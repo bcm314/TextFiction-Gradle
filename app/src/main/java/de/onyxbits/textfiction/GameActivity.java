@@ -539,9 +539,9 @@ public class GameActivity extends FragmentActivity implements DialogInterface.On
 
 		if (showstory) {
 			if (now != storyBoard) {
-				windowFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.animator.slide_in_right));
+				windowFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_right));
 				windowFlipper
-						.setOutAnimation(AnimationUtils.loadAnimation(this, R.animator.slide_out_left));
+						.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out_left));
 				windowFlipper.showPrevious();
 			}
 		}
