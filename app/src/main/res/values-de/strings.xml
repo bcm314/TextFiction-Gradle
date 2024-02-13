@@ -4,6 +4,7 @@
 	<string name="app_name">Text Fiction</string>
 	<string name="action_settings">Settings</string>
 	<string name="hello_world">Hello world!</string>
+	<string name="apprater_title">Bewerte die App?</string>
 	<string name="apprater_message">Hi,\nist diese App nützlich? Wenn ja, dann wäre eine Bewertung auf Google Play sehr willkommen. Jetzt eine Bewertung schreiben?</string>
 	<string name="apprater_positive">Sicher!</string>
 	<string name="apprater_negative">Nein, danke</string>
@@ -55,12 +56,14 @@
 	<string name="title_save_game">Spiel speichern</string>
 	<string name="msg_game_saved">Spiel gespeichert</string>
 	<string name="msg_marked">\'%1$s\' markiert</string>
+	<string name="autosavename">AUTOSAVE</string>											  
 	<string name="msg_unmarked">Markierung \'%1$s\' entfernt</string>
 	<string name="msg_no_webbrowser">Kein Webbrowser gefunden!</string>
 	<string name="mg_not_at_a_commandprompt">Nicht an einer Eingabeaufforderung! Spielstand kontne nicht gespeichert werden!</string>
 	<string name="title_activity_setting">Einstellungen</string>
 	<string name="mi_fullscreen">Vollbildmodus</string>
 	<string name="msg_leave_fullscreen">Zurück beended Vollbildmodus</string>
+	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="title_edit_direction">Richtung bearbeiten</string>
 	<string name="err_sr_deprecated">Spiele können nur über das Menu geladen/gespeichert werden!</string>
 	<string name="msg_file_copied_you_may_delete_the_original_now">Datei kopiert. Das Original kann nun gelöscht werden.</string>
