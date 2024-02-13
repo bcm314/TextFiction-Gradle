@@ -30,7 +30,6 @@
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
 				<data android:scheme="file" />
-				<data android:scheme="" />
 				<data android:host="*" />
 				<data android:pathPattern=".*\\.z3" />
 				<data android:pathPattern=".*\\.z5" />
