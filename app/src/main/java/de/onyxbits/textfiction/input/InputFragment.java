@@ -123,9 +123,9 @@ public class InputFragment extends Fragment implements OnClickListener,
 			Log.w(getClass().getName(), e);
 		}
 		flipper.setInAnimation(AnimationUtils.loadAnimation(ctx,
-				R.animator.slide_in_right));
+				R.anim.slide_in_right));
 		flipper.setOutAnimation(AnimationUtils.loadAnimation(ctx,
-				R.animator.slide_out_left));
+				R.anim.slide_out_left));
 
 		return flipper;
 	}
