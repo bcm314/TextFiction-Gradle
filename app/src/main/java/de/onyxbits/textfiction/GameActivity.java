@@ -25,6 +25,7 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -423,6 +424,14 @@ public class GameActivity extends FragmentActivity implements DialogInterface.On
 			else {
 				tmp = "";
 			}
+			// BCM - show toast if statusWindow (location/score/...) changed
+			if (!tmp.equals("") &&
+					!tmp.equals(statusWindow.getText().toString())) {
+				Toast toast = Toast.makeText(this, tmp.trim(), Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.TOP, 0, 0);
+				toast.show();
+			}
+
 			statusWindow.setText(tmp);
 			retainerFragment.upperWindow = tmp;
 		}
@@ -432,36 +441,46 @@ public class GameActivity extends FragmentActivity implements DialogInterface.On
 		if (lower.cursor > 0) {
 			showLower = true;
 			tmp = new String(lower.frameBuffer, 0, lower.noPrompt());
+			
+			// BCM remove white-spaces at beginning and end
+			int CuttedLeft=0;
+			CuttedLeft = tmp.length();
+			tmp = tmp.replaceAll("^\\s+", "");
+			CuttedLeft = CuttedLeft - tmp.length();
+			tmp = tmp.replaceAll("\\s+$", "");
+			
 			if (ttsReady && prefs.getBoolean("narrator", false)) {
 				speaker.speak(tmp, TextToSpeech.QUEUE_FLUSH, null);
 			}
 			SpannableString stmp = new SpannableString(tmp);
 			StyleRegion reg = lower.regions;
-			if (reg != null) {
-				while (reg != null) {
-					if (reg.next == null) {
-						// The printer does not "close" the last style since it doesn't know
-						// when the last character is printed.
-						reg.end = tmp.length() - 1;
-					}
-					// Did the game style the prompt (which we cut away)?
-					reg.end = Math.min(reg.end, tmp.length() - 1);
-					switch (reg.style) {
-						case ZWindow.BOLD: {
-							stmp.setSpan(new StyleSpan(Typeface.BOLD), reg.start, reg.end, 0);
-							break;
-						}
-						case ZWindow.ITALIC: {
-							stmp.setSpan(new StyleSpan(Typeface.ITALIC), reg.start, reg.end, 0);
-							break;
-						}
-						case ZWindow.FIXED: {
-							stmp.setSpan(new TypefaceSpan("monospace"), reg.start, reg.end, 0);
-							break;
-						}
-					}
-					reg = reg.next;
+			while (reg != null) {
+				// BCM need to move the regions because cutted the beginning of the string
+				reg.start=reg.start-CuttedLeft;
+				reg.end=reg.end-CuttedLeft;
+
+				if (reg.next == null) {
+					// The printer does not "close" the last style since it doesn't know
+					// when the last character is printed.
+					reg.end = tmp.length() - 1;
 				}
+				// Did the game style the prompt (which we cut away)?
+				reg.end = Math.min(reg.end, tmp.length() - 1);
+				switch (reg.style) {
+					case ZWindow.BOLD: {
+						stmp.setSpan(new StyleSpan(Typeface.BOLD), reg.start, reg.end, 0);
+						break;
+					}
+					case ZWindow.ITALIC: {
+						stmp.setSpan(new StyleSpan(Typeface.ITALIC), reg.start, reg.end, 0);
+						break;
+					}
+					case ZWindow.FIXED: {
+						stmp.setSpan(new TypefaceSpan("monospace"), reg.start, reg.end, 0);
+						break;
+					}
+				}
+				reg = reg.next;
 			}
 			highlight(stmp, highlighted);
 			try {

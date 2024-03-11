@@ -246,6 +246,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 		if (str.length() > 0) {
 			String tmp = cmdLine.getText().toString().trim();
 			tmp = tmp.trim() + " " + str.trim();
+			if (tmp != "")
+				tmp = tmp + " ";
 			cmdLine.setText(tmp);
 			cmdLine.setSelection(tmp.length());
 		}
@@ -259,6 +261,8 @@ public class InputFragment extends Fragment implements OnClickListener,
 		int idx = tmp.lastIndexOf(' ');
 		if (idx > 0) {
 			tmp = tmp.substring(0, idx);
+			if (tmp != "")
+				tmp = tmp + " ";
 			cmdLine.setText(tmp);
 			cmdLine.setSelection(tmp.length());
 		}
