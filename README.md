@@ -5,6 +5,7 @@ TextFiction
 
 V3.0
 - Initial gradle build (fork from https://github.com/shocoman/TextFiction)
+
 (Can't make direct fork, because I already have one for Eclipse I like to keep.)
 
 V3.1
